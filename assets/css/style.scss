@@ -1,0 +1,93 @@
+@import 'susy';
+@import 'bourbon';
+@import '../../../../themes/storefront/sass/utils/variables';
+
+// Styles for mobile
+.storefront-homepage-contact-section {
+	.shcs-wrapper {
+		@include clearfix;
+		position: relative;
+	}
+
+	.shcs-overlay {
+		@include clearfix;
+		background: rgba(0,0,0,.8);
+		padding: 2.618em;
+	}
+
+	.shcs-contact-details {
+		margin-bottom: 1.618em;
+
+		ul {
+			list-style-type: none;
+			margin: .857em 0 0;
+
+			li {
+				position: relative;
+				padding: .53em 0 .53em 2.618em;
+
+				&:before {
+					content: '\f124';
+					font-family: "FontAwesome";
+					position: absolute;
+					top: 0;
+					left: 0;
+					line-height: 2.244;
+					font-size: 1.2em;
+					font-weight: 700;
+				}
+
+				&.shcs-phone-number {
+					&:before {
+						content: '\f095';
+					}
+				}
+
+				&.shcs-email {
+					&:before {
+						content: '\f0e0';
+					}
+				}
+			}
+		}
+	}
+
+	.shcs-contact-form {
+		form,
+		.contact-submit {
+			margin-bottom: 0;
+		}
+
+		.contact-form-submission {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+
+	// Styles for desktop
+	.storefront-homepage-contact-section {
+		@include span(full);
+
+		.shcs-overlay {
+			padding: 0;
+		}
+
+		.shcs-contact-details,
+		.shcs-contact-form {
+			padding: gutter();
+		}
+
+		.shcs-contact-details {
+			@include span(4 of 12 no-gutter wide);
+			margin-bottom: 0;
+		}
+
+		.shcs-contact-form {
+			@include span(last 8 of 12 no-gutter);
+		}
+	}
+
+}
