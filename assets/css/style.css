@@ -1,11 +1,11 @@
 .storefront-homepage-contact-section .shcs-wrapper {
-  position: relative; }
+  position: relative;
+  background-position: center; }
   .storefront-homepage-contact-section .shcs-wrapper::after {
     clear: both;
     content: "";
     display: table; }
 .storefront-homepage-contact-section .shcs-overlay {
-  background: rgba(0, 0, 0, 0.8);
   padding: 2.618em; }
   .storefront-homepage-contact-section .shcs-overlay::after {
     clear: both;

@@ -1,0 +1,117 @@
+# Copyright (C) 2016 Storefront Homepage Contact Section
+# This file is distributed under the same license as the Storefront Homepage Contact Section package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Storefront Homepage Contact Section 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/storefront-homepage-contact-section\n"
+"POT-Creation-Date: 2016-02-04 16:07:28+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: storefront-homepage-contact-section.php:128
+#: storefront-homepage-contact-section.php:137
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:157
+msgid "%sThanks for installing the Storefront Homepage Contact Section extension. To get started, visit the %sCustomizer%s.%s %sOpen the Customizer%s"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:221
+msgid "Storefront Homepage Contact Section requires that you use Storefront as your parent theme."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:221
+msgid "Install Storefront now"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:234
+msgid "Contact Section"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:247
+msgid "Address"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:248
+msgid "Enter contact address. This address will be used to generate a map displayed as a background to the Contact section."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:264
+msgid "Phone Number"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:265
+msgid "Enter phone number."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:281
+msgid "Email Address"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:282
+msgid "Enter email address."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:296
+msgid "Contact form"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:306
+msgid "To enable the Contact Form feature, please install the %sJetpack%s plugin and %sactivate the Contact Form module%s."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:308
+msgid "To enable the Contact Form feature, please %sactivate the Contact Form module%s in the Jetpack plugin."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:327
+msgid "All responses will be listed in the %sFeedback%s section of your WordPress Admin."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:337
+msgid "Display contact form"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:338
+msgid "Toggle the display of the contact form."
+msgstr ""
+
+#: storefront-homepage-contact-section.php:395
+msgid "Contact Us"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:420
+msgid "Name"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:420
+msgid "Email"
+msgstr ""
+
+#: storefront-homepage-contact-section.php:420
+msgid "Comment"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Storefront Homepage Contact Section"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://woothemes.com/products/storefront-homepage-contact-section/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds a simple contact section to your Storefront powered site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "tiagonoronha, WooThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://woothemes.com/"
+msgstr ""

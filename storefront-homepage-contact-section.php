@@ -7,7 +7,7 @@
  * Author:				tiagonoronha, WooThemes
  * Author URI:			http://woothemes.com/
  * Requires at least:	4.0.0
- * Tested up to:		4.0.0
+ * Tested up to:		4.4.2
  *
  * Text Domain: storefront-homepage-contact-section
  * Domain Path: /languages/
@@ -91,8 +91,6 @@ final class Storefront_Homepage_Contact_Section {
 		add_action( 'init', array( $this, 'shcs_load_plugin_textdomain' ) );
 
 		add_action( 'init', array( $this, 'shcs_setup' ) );
-
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'shcs_plugin_links' ) );
 	}
 
 	/**
@@ -140,20 +138,6 @@ final class Storefront_Homepage_Contact_Section {
 	}
 
 	/**
-	 * Plugin page links
-	 *
-	 * @since  1.0.0
-	 */
-	public function shcs_plugin_links( $links ) {
-		$plugin_links = array(
-			'<a href="http://support.woothemes.com/">' . __( 'Support', 'storefront-homepage-contact-section' ) . '</a>',
-			'<a href="http://docs.woothemes.com/document/storefront-homepage-contact-section/">' . __( 'Docs', 'storefront-homepage-contact-section' ) . '</a>',
-		);
-
-		return array_merge( $plugin_links, $links );
-	}
-
-	/**
 	 * Installation.
 	 * Runs on activation. Logs the version number and assigns a notice message to a WordPress option.
 	 * @access  public
@@ -197,7 +181,6 @@ final class Storefront_Homepage_Contact_Section {
 		if ( 'storefront' == get_option( 'template' ) && apply_filters( 'storefront_homepage_contact_section_supported', true ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'shcs_styles' ), 999 );
 			add_action( 'customize_register', array( $this, 'shcs_customize_register' ) );
-			add_action( 'customize_preview_init', array( $this, 'shcs_customize_preview_js' ) );
 			add_action( 'admin_notices', array( $this, 'shcs_customizer_notice' ) );
 			add_action( 'homepage', array( $this, 'storefront_homepage_contact_section' ), 90 );
 
@@ -257,8 +240,7 @@ final class Storefront_Homepage_Contact_Section {
 		 */
 		$wp_customize->add_setting( 'shcs_contact_address', array(
 			'default'			=> '',
-			'sanitize_callback'	=> 'sanitize_text_field',
-			'transport'			=> 'postMessage',
+			'sanitize_callback'	=> 'wp_filter_post_kses'
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'shcs_contact_address', array(
@@ -275,8 +257,7 @@ final class Storefront_Homepage_Contact_Section {
 		 */
 		$wp_customize->add_setting( 'shcs_contact_phone_number', array(
 			'default'			=> '',
-			'sanitize_callback'	=> 'sanitize_text_field',
-			'transport'			=> 'postMessage',
+			'sanitize_callback'	=> 'sanitize_text_field'
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'shcs_contact_phone_number', array(
@@ -293,8 +274,7 @@ final class Storefront_Homepage_Contact_Section {
 		 */
 		$wp_customize->add_setting( 'shcs_contact_email_address', array(
 			'default'			=> '',
-			'sanitize_callback'	=> 'sanitize_text_field',
-			'transport'			=> 'postMessage',
+			'sanitize_callback'	=> 'sanitize_text_field'
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'shcs_contact_email_address', array(
@@ -319,7 +299,7 @@ final class Storefront_Homepage_Contact_Section {
 		}
 
 		/**
-		 * Contact Form Heading
+		 * Contact Form Jetpack Message
 		 */
 		$jetpack_message = '';
 		if ( ! class_exists( 'Jetpack' ) ) {
@@ -329,7 +309,7 @@ final class Storefront_Homepage_Contact_Section {
 		}
 
 		if ( '' !== $jetpack_message && class_exists( 'Arbitrary_Storefront_Control' ) ) {
-			$wp_customize->add_control( new Arbitrary_Storefront_Control( $wp_customize, 'shcs_contact_form_description', array(
+			$wp_customize->add_control( new Arbitrary_Storefront_Control( $wp_customize, 'shcs_contact_jetpack_warning', array(
 				'section'		=> 'shcs_section',
 				'type'			=> 'text',
 				'description'	=> $jetpack_message,
@@ -341,6 +321,13 @@ final class Storefront_Homepage_Contact_Section {
 		 * Contact Form
 		 */
 		if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'contact-form' ) ) {
+			$wp_customize->add_control( new Arbitrary_Storefront_Control( $wp_customize, 'shcs_contact_form_information', array(
+				'section'		=> 'shcs_section',
+				'type'			=> 'text',
+				'description'	=> sprintf( __( 'All responses will be listed in the %sFeedback%s section of your WordPress Admin.', 'storefront-homepage-contact-section' ), '<a href="' . esc_url( admin_url( 'edit.php?post_type=feedback' )  ) . '">', '</a>' ),
+				'priority'		=> 60,
+			) ) );
+
 			$wp_customize->add_setting( 'shcs_contact_form', array(
 				'default'			=> true,
 				'sanitize_callback'	=> 'absint',
@@ -352,7 +339,7 @@ final class Storefront_Homepage_Contact_Section {
 				'section'		=> 'shcs_section',
 				'settings'		=> 'shcs_contact_form',
 				'type'			=> 'checkbox',
-				'priority'		=> 50,
+				'priority'		=> 70,
 			) ) );
 		}
 	}
@@ -365,9 +352,22 @@ final class Storefront_Homepage_Contact_Section {
 	public function shcs_styles() {
 		wp_enqueue_style( 'shcs-styles', plugins_url( '/assets/css/style.css', __FILE__ ) );
 
-		$accent_color = get_theme_mod( 'storefront_accent_color', apply_filters( 'storefront_default_accent_color', '#FFA107' ) );
+		$bg_color			= storefront_get_content_background_color();
+		$accent_color		= get_theme_mod( 'storefront_accent_color', apply_filters( 'storefront_default_accent_color', '#FFA107' ) );
+		$overlay_opacity	= apply_filters( 'storefront_homepage_contact_section_overlay', .8 );
+
+		// Get RGB color of overlay from HEX
+		if ( Storefront_Homepage_Contact_Section::sanitize_hex_color( $bg_color ) ) {
+			list( $r, $g, $b ) = sscanf( $bg_color, "#%02x%02x%02x" );
+		} else {
+			$r = $g = $b = 255;
+		}
 
 		$shcs_style = '
+		.storefront-homepage-contact-section .shcs-overlay {
+			background-color: rgba(' . $r . ', ' . $g . ', ' . $b . ', ' . $overlay_opacity .');
+		}
+
 		.storefront-homepage-contact-section .shcs-contact-details ul li:before {
 			color: ' . $accent_color . ';
 		}';
@@ -376,27 +376,19 @@ final class Storefront_Homepage_Contact_Section {
 	}
 
 	/**
-	 * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
-	 *
-	 * @since  1.0.0
-	 */
-	public function shcs_customize_preview_js() {
-		wp_enqueue_script( 'shcs-customizer', plugins_url( '/assets/js/customizer.min.js', __FILE__ ), array( 'customize-preview' ), '1.1', true );
-	}
-
-	/**
 	 * Contact section
-	 * @return void
+	 * @since   1.0.0
+	 * @return 	void
 	 */
 	public static function storefront_homepage_contact_section() {
 		$address		= get_theme_mod( 'shcs_contact_address', '' );
 		$phone_number	= get_theme_mod( 'shcs_contact_phone_number', '' );
 		$email			= get_theme_mod( 'shcs_contact_email_address', '' );
-		$display_form	= get_theme_mod( 'shcs_contact_form', 1 );
+		$display_form	= get_theme_mod( 'shcs_contact_form', true );
 
 		$map_url = '';
 		if ( '' !== $address ) {
-			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?size=1060x600&center=' . urlencode( $address );
+			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?size=1060x600&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) );
 		}
 ?>
 	<section class="storefront-product-section storefront-homepage-contact-section">
@@ -408,7 +400,7 @@ final class Storefront_Homepage_Contact_Section {
 				<div class="shcs-contact-details">
 					<ul>
 						<?php if ( '' !== $address ) : ?>
-						<li class="shcs-address"><?php esc_attr_e( $address ); ?></li>
+						<li class="shcs-address"><?php echo wpautop( esc_attr( $address ) ); ?></li>
 						<?php endif; ?>
 
 						<?php if ( '' !== $phone_number ) : ?>
@@ -423,9 +415,9 @@ final class Storefront_Homepage_Contact_Section {
 				<?php endif; ?>
 
 				<?php if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'contact-form' ) ) : ?>
-					<?php if ( 1 === $display_form ) : ?>
+					<?php if ( true == $display_form ) : ?>
 					<div class="shcs-contact-form">
-						<?php echo do_shortcode( '[contact-form][contact-field label="Name" type="name" required="1"][contact-field label="Email" type="email" required="1"][contact-field label="Comment" type="textarea" required="1"][/contact-form]' ); ?>
+						<?php echo do_shortcode( '[contact-form][contact-field label="' . __( 'Name', 'storefront-homepage-contact-section' ) . '" type="name" required="1"][contact-field label="' . __( 'Email', 'storefront-homepage-contact-section' ) . '" type="email" required="1"][contact-field label="' . __( 'Comment', 'storefront-homepage-contact-section' ) . '" type="textarea" required="1"][/contact-form]' ); ?>
 					</div>
 					<?php endif; ?>
 				<?php endif; ?>
@@ -433,5 +425,28 @@ final class Storefront_Homepage_Contact_Section {
 		</div>
 	</section>
 <?php
+	}
+
+	/**
+	 * Sanitizes a hex color. Identical to core's sanitize_hex_color(), which is not available on the wp_head hook.
+	 *
+	 * Returns either '', a 3 or 6 digit hex color (with #), or null.
+	 * For sanitizing values without a #, see sanitize_hex_color_no_hash().
+	 *
+	 * @since  1.0.0
+	 * @param  string $color
+	 * @return string|void
+	 */
+	private function sanitize_hex_color( $color ) {
+		if ( '' === $color ) {
+			return '';
+        }
+
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			return $color;
+        }
+
+		return null;
 	}
 } // End Class
