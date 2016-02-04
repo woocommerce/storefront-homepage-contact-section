@@ -4,7 +4,7 @@
  * Plugin URI:			http://woothemes.com/products/storefront-homepage-contact-section/
  * Description:			Adds a simple contact section to your Storefront powered site.
  * Version:				1.0.0
- * Author:				tiagonoronha, WooThemes
+ * Author:				WooThemes
  * Author URI:			http://woothemes.com/
  * Requires at least:	4.0.0
  * Tested up to:		4.4.2
