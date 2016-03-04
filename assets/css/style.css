@@ -1,6 +1,7 @@
 .storefront-homepage-contact-section .shcs-wrapper {
   position: relative;
-  background-position: center; }
+  background-position: center;
+  background-repeat: no-repeat; }
   .storefront-homepage-contact-section .shcs-wrapper::after {
     clear: both;
     content: "";

@@ -3,7 +3,7 @@
  * Plugin Name:			Storefront Homepage Contact Section
  * Plugin URI:			http://woothemes.com/products/storefront-homepage-contact-section/
  * Description:			Adds a simple contact section to your Storefront powered site.
- * Version:				1.0.0
+ * Version:				1.0.1
  * Author:				WooThemes
  * Author URI:			http://woothemes.com/
  * Requires at least:	4.0.0
@@ -84,7 +84,7 @@ final class Storefront_Homepage_Contact_Section {
 		$this->token 			= 'storefront-homepage-contact-section';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.0.0';
+		$this->version 			= '1.0.1';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -352,7 +352,7 @@ final class Storefront_Homepage_Contact_Section {
 	public function shcs_styles() {
 		wp_enqueue_style( 'shcs-styles', plugins_url( '/assets/css/style.css', __FILE__ ) );
 
-		$bg_color			= storefront_get_content_background_color();
+		$bg_color			= apply_filters( 'storefront_homepage_contact_section_bg', storefront_get_content_background_color() );
 		$accent_color		= get_theme_mod( 'storefront_accent_color', apply_filters( 'storefront_default_accent_color', '#FFA107' ) );
 		$overlay_opacity	= apply_filters( 'storefront_homepage_contact_section_overlay', .8 );
 
@@ -388,7 +388,7 @@ final class Storefront_Homepage_Contact_Section {
 
 		$map_url = '';
 		if ( '' !== $address ) {
-			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?size=1060x600&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) );
+			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&size=530x300&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) );
 		}
 ?>
 	<section class="storefront-product-section storefront-homepage-contact-section">

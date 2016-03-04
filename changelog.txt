@@ -1,4 +1,0 @@
-*** Storefront Homepage Contact Section Changelog ***
-
-2016.02.03 - version 1.0.0
-* Initial release

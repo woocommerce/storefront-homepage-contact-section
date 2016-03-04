@@ -1,6 +1,6 @@
 @import 'susy';
 @import 'bourbon';
-@import '../../../../themes/storefront/sass/utils/variables';
+@import '../../../../themes/storefront/assets/sass/utils/variables';
 
 // Styles for mobile
 .storefront-homepage-contact-section {
@@ -8,6 +8,7 @@
 		@include clearfix;
 		position: relative;
 		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	.shcs-overlay {
