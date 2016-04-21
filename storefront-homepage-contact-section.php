@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:			Storefront Homepage Contact Section
- * Plugin URI:			http://woothemes.com/products/storefront-homepage-contact-section/
- * Description:			Adds a simple contact section to your Storefront powered site.
- * Version:				1.0.2
- * Author:				WooThemes
- * Author URI:			http://woothemes.com/
- * Requires at least:	4.0.0
- * Tested up to:		4.4.2
+ * Plugin Name:         Storefront Homepage Contact Section
+ * Plugin URI:          http://woothemes.com/products/storefront-homepage-contact-section/
+ * Description:         Adds a simple contact section to your Storefront powered site.
+ * Version:             1.0.2
+ * Author:              WooThemes
+ * Author URI:          http://woothemes.com/
+ * Requires at least:   4.0
+ * Tested up to:        4.5
  *
  * Text Domain: storefront-homepage-contact-section
  * Domain Path: /languages/
