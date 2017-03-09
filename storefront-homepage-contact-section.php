@@ -84,7 +84,7 @@ final class Storefront_Homepage_Contact_Section {
 		$this->token 			= 'storefront-homepage-contact-section';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.0.2';
+		$this->version 			= '1.0.3';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
