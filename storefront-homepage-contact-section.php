@@ -3,7 +3,7 @@
  * Plugin Name:         Storefront Homepage Contact Section
  * Plugin URI:          http://woothemes.com/products/storefront-homepage-contact-section/
  * Description:         Adds a simple contact section to your Storefront powered site.
- * Version:             1.0.2
+ * Version:             1.0.3
  * Author:              WooThemes
  * Author URI:          http://woothemes.com/
  * Requires at least:   4.0
@@ -84,7 +84,7 @@ final class Storefront_Homepage_Contact_Section {
 		$this->token 			= 'storefront-homepage-contact-section';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.0.2';
+		$this->version 			= '1.0.3';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -287,6 +287,23 @@ final class Storefront_Homepage_Contact_Section {
 		) ) );
 
 		/**
+		 * Google Static Maps API Key
+		 */
+		$wp_customize->add_setting( 'shcs_api_key', array(
+			'default'			=> '',
+			'sanitize_callback'	=> 'sanitize_text_field'
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'shcs_api_key', array(
+			'label'         => __( 'API key', 'storefront-homepage-contact-section' ),
+			'description'   => sprintf(__( 'Enter your %sGoogle maps API keys%s', 'storefront-homepage-contact-section'), '<a href="https://developers.google.com/maps/documentation/static-maps/get-api-key">', '</a>' ),
+			'section'       => 'shcs_section',
+			'settings'      => 'shcs_api_key',
+			'type'          => 'text',
+			'priority'      => 40,
+		) ) );
+
+		/**
 		 * Contact Form Heading
 		 */
 		if ( class_exists( 'Arbitrary_Storefront_Control' ) ) {
@@ -294,7 +311,7 @@ final class Storefront_Homepage_Contact_Section {
 				'section'  	=> 'shcs_section',
 				'type'		=> 'heading',
 				'label'		=> __( 'Contact form', 'storefront-homepage-contact-section' ),
-				'priority' 	=> 40,
+				'priority' 	=> 50,
 			) ) );
 		}
 
@@ -313,7 +330,7 @@ final class Storefront_Homepage_Contact_Section {
 				'section'		=> 'shcs_section',
 				'type'			=> 'text',
 				'description'	=> $jetpack_message,
-				'priority'		=> 50,
+				'priority'		=> 60,
 			) ) );
 		}
 
@@ -325,7 +342,7 @@ final class Storefront_Homepage_Contact_Section {
 				'section'		=> 'shcs_section',
 				'type'			=> 'text',
 				'description'	=> sprintf( __( 'All responses will be listed in the %sFeedback%s section of your WordPress Admin.', 'storefront-homepage-contact-section' ), '<a href="' . esc_url( admin_url( 'edit.php?post_type=feedback' )  ) . '">', '</a>' ),
-				'priority'		=> 60,
+				'priority'		=> 70,
 			) ) );
 
 			$wp_customize->add_setting( 'shcs_contact_form', array(
@@ -339,7 +356,7 @@ final class Storefront_Homepage_Contact_Section {
 				'section'		=> 'shcs_section',
 				'settings'		=> 'shcs_contact_form',
 				'type'			=> 'checkbox',
-				'priority'		=> 70,
+				'priority'		=> 80,
 			) ) );
 		}
 	}
@@ -384,11 +401,12 @@ final class Storefront_Homepage_Contact_Section {
 		$address		= get_theme_mod( 'shcs_contact_address', '' );
 		$phone_number	= get_theme_mod( 'shcs_contact_phone_number', '' );
 		$email			= get_theme_mod( 'shcs_contact_email_address', '' );
+		$apikey			= get_theme_mod( 'shcs_api_key', '' );
 		$display_form	= get_theme_mod( 'shcs_contact_form', true );
 
 		$map_url = '';
 		if ( '' !== $address ) {
-			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&size=530x300&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) );
+			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&size=530x300&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) ) . '&key=' . $apikey . '';
 		}
 ?>
 	<section class="storefront-product-section storefront-homepage-contact-section">
