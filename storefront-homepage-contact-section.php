@@ -406,7 +406,7 @@ final class Storefront_Homepage_Contact_Section {
 
 		$map_url = '';
 		if ( '' !== $address ) {
-			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&size=530x300&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) ) . '&key=' . $apikey . '';
+			$map_url = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&size=530x300&center=' . urlencode( trim( preg_replace( '/\s+/', ' ', $address ) ) ) . '&key=' . esc_attr( $apikey );
 		}
 ?>
 	<section class="storefront-product-section storefront-homepage-contact-section">
