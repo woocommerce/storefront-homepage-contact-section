@@ -2,8 +2,8 @@
 Contributors: tiagonoronha, woothemes, rynald0s, automattic
 Tags: woocommerce, ecommerce, storefront, contact, form, map, email
 Requires at least: 4.0
-Tested up to: 4.7.3
-Stable tag: 1.0.3
+Tested up to: 4.9.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,9 +32,9 @@ This plugin will only work with the [Storefront](http://wordpress.org/themes/sto
 
 This plugin requires the [Jetpack](http://wordpress.org/plugins/jetpack/) plugin for the contact form to work.
 
-= Google map won’t generate = 
+= Google map won’t generate =
 
-The Google Static Maps API requires an API key (as of June 22, 2016), which you can generate from here: https://developers.google.com/maps/documentation/static-maps/. Once you have the API key, add it to the settings, and the map will be displayed. 
+The Google Static Maps API requires an API key (as of June 22, 2016), which you can generate from here: https://developers.google.com/maps/documentation/static-maps/. Once you have the API key, add it to the settings, and the map will be displayed.
 
 == Screenshots ==
 
@@ -42,9 +42,13 @@ The Google Static Maps API requires an API key (as of June 22, 2016), which you 
 
 == Changelog ==
 
+= 1.0.4 =
+
+Fix - Set Jetpack Contact Form "send to" email address to the address in General Settings.
+
 = 1.0.3 =
 
-New - Added setting for users to include own Google Static Maps API key (these API keys are required as of June 22, 2016)
+New - Added setting for users to include own Google Static Maps API key (these API keys are required as of June 22, 2016).
 
 = 1.0.2 =
 New - Added filter to manipulate the section title.
