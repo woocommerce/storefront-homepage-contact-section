@@ -1,6 +1,7 @@
 @import 'susy';
-@import 'bourbon';
-@import '../../../../themes/storefront/assets/sass/utils/variables';
+@import '../../../../themes/storefront/assets/css/sass/utils/variables';
+@import '../../../../themes/storefront/assets/css/sass/utils/mixins';
+@import '../../../../themes/storefront/assets/css/sass/vendors/font-awesome/variables';
 
 // Styles for mobile
 .storefront-homepage-contact-section {
@@ -62,6 +63,34 @@
 		.contact-form-submission {
 			margin: 0;
 			padding: 0;
+		}
+	}
+}
+
+.storefront-2-3 {
+	.storefront-homepage-contact-section {
+		.shcs-contact-details {
+			ul {
+				li {
+					&:before {
+						font-family: "Font Awesome 5 Free";
+						font-weight: 900;
+						content: fa-content( $fa-var-location-arrow );
+					}
+
+					&.shcs-phone-number {
+						&:before {
+							content: fa-content( $fa-var-phone );
+						}
+					}
+
+					&.shcs-email {
+						&:before {
+							content: fa-content( $fa-var-envelope );
+						}
+					}
+				}
+			}
 		}
 	}
 }
