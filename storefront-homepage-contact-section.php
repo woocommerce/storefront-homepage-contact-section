@@ -437,7 +437,7 @@ final class Storefront_Homepage_Contact_Section {
 				<?php if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'contact-form' ) ) : ?>
 					<?php if ( true == $display_form ) : ?>
 					<div class="shcs-contact-form">
-						<?php echo do_shortcode( '[contact-form][contact-field to="' . get_bloginfo( 'admin_email' ) . '" label="' . __( 'Name', 'storefront-homepage-contact-section' ) . '" type="name" required="1"][contact-field label="' . __( 'Email', 'storefront-homepage-contact-section' ) . '" type="email" required="1"][contact-field label="' . __( 'Comment', 'storefront-homepage-contact-section' ) . '" type="textarea" required="1"][/contact-form]' ); ?>
+						<?php echo do_shortcode( '[contact-form to="' . get_bloginfo( 'admin_email' ) . '"][contact-field label="' . __( 'Name', 'storefront-homepage-contact-section' ) . '" type="name" required="1"][contact-field label="' . __( 'Email', 'storefront-homepage-contact-section' ) . '" type="email" required="1"][contact-field label="' . __( 'Comment', 'storefront-homepage-contact-section' ) . '" type="textarea" required="1"][/contact-form]' ); ?>
 					</div>
 					<?php endif; ?>
 				<?php endif; ?>
