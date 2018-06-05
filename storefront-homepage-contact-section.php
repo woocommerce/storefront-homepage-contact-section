@@ -183,12 +183,30 @@ final class Storefront_Homepage_Contact_Section {
 			add_action( 'customize_register', array( $this, 'shcs_customize_register' ) );
 			add_action( 'admin_notices', array( $this, 'shcs_customizer_notice' ) );
 			add_action( 'homepage', array( $this, 'storefront_homepage_contact_section' ), 90 );
+			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
 			// Hide the 'More' section in the customizer
 			add_filter( 'storefront_customizer_more', '__return_false' );
 		} else {
 			add_action( 'admin_notices', array( $this, 'shcs_install_storefront_notice' ) );
 		}
+	}
+
+	/**
+	 * Adds custom classes to the array of body classes.
+	 *
+	 * @since  1.0.5
+	 * @param  array $classes Classes for the body element.
+	 * @return array
+	 */
+	public function body_classes( $classes ) {
+		global $storefront_version;
+
+		if ( version_compare( $storefront_version, '2.3.0', '>=' ) ) {
+			$classes[] = 'storefront-2-3';
+		}
+
+		return $classes;
 	}
 
 	/**

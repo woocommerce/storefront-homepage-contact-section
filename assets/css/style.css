@@ -2,16 +2,20 @@
   position: relative;
   background-position: center;
   background-repeat: no-repeat; }
-  .storefront-homepage-contact-section .shcs-wrapper::after {
-    clear: both;
-    content: "";
+  .storefront-homepage-contact-section .shcs-wrapper::before, .storefront-homepage-contact-section .shcs-wrapper::after {
+    content: '';
     display: table; }
+  .storefront-homepage-contact-section .shcs-wrapper::after {
+    clear: both; }
+
 .storefront-homepage-contact-section .shcs-overlay {
   padding: 2.618em; }
-  .storefront-homepage-contact-section .shcs-overlay::after {
-    clear: both;
-    content: "";
+  .storefront-homepage-contact-section .shcs-overlay::before, .storefront-homepage-contact-section .shcs-overlay::after {
+    content: '';
     display: table; }
+  .storefront-homepage-contact-section .shcs-overlay::after {
+    clear: both; }
+
 .storefront-homepage-contact-section .shcs-contact-details {
   margin-bottom: 1.618em; }
   .storefront-homepage-contact-section .shcs-contact-details ul {
@@ -33,12 +37,25 @@
         content: '\f095'; }
       .storefront-homepage-contact-section .shcs-contact-details ul li.shcs-email:before {
         content: '\f0e0'; }
+
 .storefront-homepage-contact-section .shcs-contact-form form,
 .storefront-homepage-contact-section .shcs-contact-form .contact-submit {
   margin-bottom: 0; }
+
 .storefront-homepage-contact-section .shcs-contact-form .contact-form-submission {
   margin: 0;
   padding: 0; }
+
+.storefront-2-3 .storefront-homepage-contact-section .shcs-contact-details ul li:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f124"; }
+
+.storefront-2-3 .storefront-homepage-contact-section .shcs-contact-details ul li.shcs-phone-number:before {
+  content: "\f095"; }
+
+.storefront-2-3 .storefront-homepage-contact-section .shcs-contact-details ul li.shcs-email:before {
+  content: "\f0e0"; }
 
 @media screen and (min-width: 768px) {
   .storefront-homepage-contact-section {
