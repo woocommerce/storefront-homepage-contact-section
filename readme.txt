@@ -2,8 +2,8 @@
 Contributors: tiagonoronha, woothemes, rynald0s, automattic
 Tags: woocommerce, ecommerce, storefront, contact, form, map, email
 Requires at least: 4.0
-Tested up to: 4.9.2
-Stable tag: 1.0.4
+Tested up to: 4.9
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,12 +42,13 @@ The Google Static Maps API requires an API key (as of June 22, 2016), which you 
 
 == Changelog ==
 
-= 1.0.4 =
+= 1.0.5 =
+Fix - Move "send to" attribute to correct shortcode.
 
+= 1.0.4 =
 Fix - Set Jetpack Contact Form "send to" email address to the address in General Settings.
 
 = 1.0.3 =
-
 New - Added setting for users to include own Google Static Maps API key (these API keys are required as of June 22, 2016).
 
 = 1.0.2 =

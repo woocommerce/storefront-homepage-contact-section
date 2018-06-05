@@ -3,11 +3,11 @@
  * Plugin Name:         Storefront Homepage Contact Section
  * Plugin URI:          http://woothemes.com/products/storefront-homepage-contact-section/
  * Description:         Adds a simple contact section to your Storefront powered site.
- * Version:             1.0.4
+ * Version:             1.0.5
  * Author:              WooThemes
  * Author URI:          http://woothemes.com/
  * Requires at least:   4.0
- * Tested up to:        4.5
+ * Tested up to:        4.9
  *
  * Text Domain: storefront-homepage-contact-section
  * Domain Path: /languages/
@@ -84,7 +84,7 @@ final class Storefront_Homepage_Contact_Section {
 		$this->token 			= 'storefront-homepage-contact-section';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.0.4';
+		$this->version 			= '1.0.5';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
