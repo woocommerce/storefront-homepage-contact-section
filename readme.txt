@@ -1,5 +1,5 @@
 === Storefront Homepage Contact Section ===
-Contributors: tiagonoronha, woothemes, rynald0s, automattic
+Contributors: woocommerce,automattic,tiagonoronha,woothemes,rynald0s
 Tags: woocommerce, ecommerce, storefront, contact, form, map, email
 Requires at least: 4.0
 Tested up to: 4.9
