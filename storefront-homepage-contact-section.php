@@ -125,7 +125,7 @@ final class Storefront_Homepage_Contact_Section {
 	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'storefront-homepage-contact-section' ), '1.0.0' );
 	}
 
 	/**
@@ -134,7 +134,7 @@ final class Storefront_Homepage_Contact_Section {
 	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'storefront-homepage-contact-section'  ), '1.0.0' );
 	}
 
 	/**
@@ -442,11 +442,11 @@ final class Storefront_Homepage_Contact_Section {
 						<?php endif; ?>
 
 						<?php if ( '' !== $phone_number ) : ?>
-						<li class="shcs-phone-number"><?php esc_attr_e( $phone_number ); ?></li>
+						<li class="shcs-phone-number"><?php esc_attr_e( $phone_number, 'storefront-homepage-contact-section'  ); ?></li>
 						<?php endif; ?>
 
 						<?php if ( '' !== $email ) : ?>
-						<li class="shcs-email"><?php esc_attr_e( $email ); ?></li>
+						<li class="shcs-email"><?php esc_attr_e( $email, 'storefront-homepage-contact-section'  ); ?></li>
 						<?php endif; ?>
 					</ul>
 				</div>
