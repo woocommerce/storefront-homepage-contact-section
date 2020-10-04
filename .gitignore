@@ -1,3 +1,5 @@
 .sass-cache
-.codekit-cache
 .DS_Store
+node_modules/
+/storefront-homepage-contact-section
+storefront-homepage-contact-section.zip 
